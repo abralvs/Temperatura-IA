@@ -16,7 +16,11 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author igorb
  */
+
 public class Grafico {
+         
+
+            
     public static DefaultCategoryDataset dsExterna;
     public static DefaultCategoryDataset dsInterna;
     public static CategoryPlot plotTempExterna;
