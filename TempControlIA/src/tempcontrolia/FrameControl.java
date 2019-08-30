@@ -54,7 +54,7 @@ public final class FrameControl extends javax.swing.JFrame {
         pTempInterna.add(grafico.geraGraficoTempInterna(grafico.dsInterna,"Temperatura Interna"));
         
         
-        ImageIcon icon = new ImageIcon("C:\\Users\\igorb\\Documents\\NetBeansProjects\\TempControlIA\\src\\tempcontrolia\\images\\termometro.png");
+        ImageIcon icon = new ImageIcon("src\\tempcontrolia\\images\\termometro.png");
         jLabelTerm.setIcon(icon);
         jLabelTerm1.setIcon(icon);
         
