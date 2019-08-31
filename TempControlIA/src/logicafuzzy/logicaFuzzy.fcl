@@ -1,0 +1,32 @@
+FUNCTION_BLOCK papeis
+    VAR_INPUT
+        temperatura: REAL;
+        tamanhoSala: REAL;
+    END_VAR
+
+    VAR_OUTPUT
+        tempeaturIdeal: REAL;
+    END_VAR
+
+    FUZZIFY temperatura
+        TERM muitoFria 	     := (14,1)(18,0);
+        TERM fria      	     := (17,0)(19,1)(22,0);
+        TERM agradavel       := (19,0)(23,1)(27,0);
+        TERM desconfortavel  := (26,0)(28,1)(31,0);
+        TERM quente    	     := (30,0)(33,1)(35,0);
+        TERM muitoQuente     := (34,0)(38,1);
+    END_FUZZIFY
+
+    FUZZIFY tamanhoSala
+        TERM pequena := (10,1)(30,0);
+        TERM media   := (25,0)(50,1)(60,0);
+        TERM grande  := (55,0)(100,1);
+    END_FUZZIFY
+
+    DEFUZZIFY tempeaturIdeal
+        TERM aumentarMuito     := (6,1)(10,0);
+        TERM aumentarUmPouco   := (1,0)(3.5,1)(6,0); 
+        TERM manterTempertura  := (-2,0)(0,1)(2,0); 
+        TERM diminuirUmPouco   := (-4,0)(-6.5,1)(-11,0);
+        TERM diminuirMuito     := (-13,0)(-14,1)(-16,0);
+    END_DEFUZZIFY 
