@@ -1,4 +1,4 @@
-package views;
+package models;
 
 import java.awt.Color;
 import java.text.DecimalFormat;
