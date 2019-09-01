@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tempcontrolia;
+package views;
 
 import java.util.Random;
 import java.util.logging.Level;
@@ -95,7 +95,6 @@ public final class FrameControl extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(820, 720));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(820, 720));
@@ -121,7 +120,7 @@ public final class FrameControl extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabelArCond.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tempcontrolia/ar-cond.gif"))); // NOI18N
+        jLabelArCond.setIcon(new javax.swing.ImageIcon(getClass().getResource("/views/ar-cond.gif"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

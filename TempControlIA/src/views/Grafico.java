@@ -1,4 +1,4 @@
-package tempcontrolia;
+package views;
 
 import java.awt.Color;
 import java.text.DecimalFormat;
