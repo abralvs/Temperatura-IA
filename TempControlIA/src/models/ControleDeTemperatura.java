@@ -1,4 +1,5 @@
 package models;
+import java.io.File;
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.FunctionBlock;
 import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
@@ -10,7 +11,7 @@ import net.sourceforge.jFuzzyLogic.rule.Variable;
  */
 public class ControleDeTemperatura {
     public static void main(String[] args) throws Exception {
-		String filename = "src\\logicafuzzy\\logicaFuzzy.fcl";
+		String filename = "src" + File.separatorChar + "logicafuzzy" + File.separatorChar + "logicaFuzzy.fcl";
 		FIS fis = FIS.load(filename, true);
 
 		if (fis == null) {
@@ -33,7 +34,7 @@ public class ControleDeTemperatura {
                 // Print ruleSet
 		System.out.println(fb);
 		System.out.println("temperaturaideal: " + fb.getVariable("temperaturaideal").getValue());
-                
+                System.out.println("temp: " + fb.getVariable("temperaturaideal"));
              
                 //JFuzzyChart.get().chart(fb);
                 /*Geração dos graficos*/
