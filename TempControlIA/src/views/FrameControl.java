@@ -10,6 +10,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import models.EnvironmentConfiguration;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
@@ -21,11 +22,14 @@ public final class FrameControl extends javax.swing.JFrame {
      * Creates new form FrameControl
      */
     public static Grafico grafico;
-    
+    private static EnvironmentConfiguration envConfig;
         
-    public FrameControl()  {
+    public FrameControl(EnvironmentConfiguration envConfig)  {
         initComponents();
         setResizable(false); 
+        
+        /*Configuracoes do ambiente*/
+        this.envConfig = envConfig;
         
         /*Objeto que gera os graficos*/
         grafico = new Grafico();
@@ -226,7 +230,7 @@ public final class FrameControl extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                    new FrameControl().setVisible(true);
+                    new FrameControl(envConfig).setVisible(true);
             }
         });
     }
