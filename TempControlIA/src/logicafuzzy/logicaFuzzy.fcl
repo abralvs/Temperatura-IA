@@ -23,12 +23,12 @@ FUNCTION_BLOCK papeis
         TERM grande  := (55,0)(100,1);
     END_FUZZIFY
 
-    DEFUZZIFY tempeaturideal
-        TERM aumentarmuito     := (6,1)(10,0);
-        TERM aumentarumpouco   := (1,0)(3,1)(6,0); 
-        TERM mantertempertura  := (-2,0)(0,1)(2,0); 
-        TERM diminuirumpouco   := (-11,0)(-6,1)(-4,0);
+    DEFUZZIFY tempeaturideal 
         TERM diminuirmuito     := (-16,0)(-14,1)(-13,0);
+        TERM diminuirumpouco   := (-11,0)(-6,1)(-4,0);
+        TERM mantertempertura  := (-2,0)(0,1)(2,0); 
+        TERM aumentarumpouco   := (1,0)(3,1)(6,0); 
+        TERM aumentarmuito     := (6,1)(10,0);
         METHOD : COG;
         DEFAULT := 0;    
     END_DEFUZZIFY 

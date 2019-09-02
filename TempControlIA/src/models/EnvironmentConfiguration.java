@@ -68,8 +68,4 @@ public class EnvironmentConfiguration {
     public float getNumberPeople() {
         return numberPeople;
     } 
-
-    public void setInternTemp(JSpinner jSpinnerTempSala) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
