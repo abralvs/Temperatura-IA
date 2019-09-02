@@ -187,6 +187,10 @@ public class FrameConfiguration extends javax.swing.JFrame {
         
         FrameControl fm = new FrameControl(envConfig);
         fm.setVisible(true);
+        
+        FrameFuzzifyChart frameFuzzifyChart = new FrameFuzzifyChart();
+        frameFuzzifyChart.setVisible(true);
+        
     }//GEN-LAST:event_btnSimulateActionPerformed
 
     private void jTextTempRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTempRoomActionPerformed
