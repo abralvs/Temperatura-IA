@@ -22,8 +22,8 @@ public class ControleDeTemperatura {
 		FunctionBlock fb = fis.getFunctionBlock(null);
 
 		// Set inputs
-		fb.setVariable("temperatura", 14.0);
-		fb.setVariable("tamanhosala", 50.0);
+		fb.setVariable("temperatura",17.0);
+		fb.setVariable("tamanhosala",50.0);
 
 		// Evaluate
 		fb.evaluate();
@@ -38,7 +38,7 @@ public class ControleDeTemperatura {
                 //JFuzzyChart.get().chart(fb);
                 
                 /*Geração dos graficos*/
-               // Variable tip = fb.getVariable("tempeaturideal");
+                // Variable tip = fb.getVariable("tempeaturideal");
                 //JFuzzyChart.get().chart(tip, tip.getDefuzzifier(), true); 
     }
 }

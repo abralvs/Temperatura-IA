@@ -1,39 +1,40 @@
 FUNCTION_BLOCK papeis
-    VAR_INPUT
+
+VAR_INPUT
         temperatura : REAL;
         tamanhosala : REAL;
-    END_VAR
+END_VAR
 
-    VAR_OUTPUT
+VAR_OUTPUT
         tempeaturideal : REAL;
-    END_VAR
+END_VAR
 
-    FUZZIFY temperatura
-        TERM muitofria 	     := (14,1)(18,0);
-        TERM fria      	     := (17,0)(19,1)(22,0);
-        TERM agradavel       := (19,0)(23,1)(27,0);
-        TERM desconfortavel  := (26,0)(28,1)(31,0);
-        TERM quente    	     := (30,0)(33,1)(35,0);
-        TERM muitoquente     := (34,0)(38,1);
-    END_FUZZIFY
+FUZZIFY temperatura
+        TERM muitofria 	     := (14,1) (18,0);
+        TERM fria      	     := (17,0) (19,1) (22,0);
+        TERM agradavel       := (19,0) (23,1) (27,0);
+        TERM desconfortavel  := (26,0) (28,1) (31,0);
+        TERM quente    	     := (30,0) (33,1) (35,0);
+        TERM muitoquente     := (34,0) (38,1);
+END_FUZZIFY
 
-    FUZZIFY tamanhosala
-        TERM pequena := (10,1)(30,0);
-        TERM media   := (25,0)(50,1)(60,0);
-        TERM grande  := (55,0)(100,1);
-    END_FUZZIFY
+FUZZIFY tamanhosala
+        TERM pequena := (10,1) (30,0);
+        TERM media   := (25,0) (50,1) (60,0);
+        TERM grande  := (55,0) (100,1);
+END_FUZZIFY
 
-    DEFUZZIFY tempeaturideal 
-        TERM diminuirmuito     := (-16,0)(-14,1)(-13,0);
-        TERM diminuirumpouco   := (-11,0)(-6,1)(-4,0);
-        TERM mantertempertura  := (-2,0)(0,1)(2,0); 
-        TERM aumentarumpouco   := (1,0)(3,1)(6,0); 
-        TERM aumentarmuito     := (6,1)(10,0);
+DEFUZZIFY tempeaturideal 
+        TERM diminuirmuito     := (-16,0) (-14,1) (-13,0);
+        TERM diminuirumpouco   := (-11,0) (-6,1)  (-4,0);
+        TERM mantertempertura  := (-2,0)  (0,1)   (2,0); 
+        TERM aumentarumpouco   := (1,0)   (3,1)   (6,0); 
+        TERM aumentarmuito     := (6,1)   (10,0);
         METHOD : COG;
         DEFAULT := 0;    
-    END_DEFUZZIFY 
+END_DEFUZZIFY 
 
-    RULEBLOCK Regras
+RULEBLOCK Regras
         AND : MIN;
         ACT : MIN;
         ACCU : MAX;
@@ -44,7 +45,6 @@ FUNCTION_BLOCK papeis
         RULE 4 : IF temperatura IS desconfortavel AND tamanhosala IS pequena THEN tempeaturideal IS diminuirumpouco;
         RULE 5 : IF temperatura IS quente         AND tamanhosala IS pequena THEN tempeaturideal IS diminuirumpouco; 
         RULE 6 : IF temperatura IS muitoquente    AND tamanhosala IS pequena THEN tempeaturideal IS diminuirmuito;
-
 
         RULE 7 : IF temperatura IS muitofria       AND tamanhosala IS media THEN tempeaturideal IS aumentarmuito;  
         RULE 8 : IF temperatura IS fria            AND tamanhosala IS media THEN tempeaturideal IS aumentarumpouco;
@@ -58,8 +58,7 @@ FUNCTION_BLOCK papeis
         RULE 15 : IF temperatura IS agradavel      AND tamanhosala IS grande THEN tempeaturideal IS mantertempertura;
         RULE 16 : IF temperatura IS desconfortavel AND tamanhosala IS grande THEN tempeaturideal IS diminuirumpouco;
         RULE 17 : IF temperatura IS quente         AND tamanhosala IS grande THEN tempeaturideal IS diminuirumpouco; 
-        RULE 18 : IF temperatura IS muitoquente    AND tamanhosala IS grande THEN tempeaturideal IS diminuirmuito;
-    END_RULEBLOCK
+        RULE 18 : IF temperatura IS muitoquente    AND tamanhosala IS grande THEN tempeaturideal IS diminuirmuito;    
+END_RULEBLOCK
     
-
-    END_FUNCTION_BLOCK
+END_FUNCTION_BLOCK

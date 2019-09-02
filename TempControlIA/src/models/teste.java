@@ -28,7 +28,7 @@ public class teste {
 
 		// Set inputs
 		fb.setVariable("food", 8.5);
-		fb.setVariable("service", 7.5);
+		fb.setVariable("service", 6.5);
 
 		// Evaluate
 		fb.evaluate();
@@ -37,7 +37,7 @@ public class teste {
 		fb.getVariable("tip").defuzzify();
                 // Print ruleSet
 		System.out.println(fb);
-		System.out.println("Tip: " + fb.getVariable("tip").getValue());
+		System.out.println("Tip: " + fb.getVariable("tip").getValue()+"  "+fb.getVariables());
                 
                 
                 JFuzzyChart.get().chart(fb);
