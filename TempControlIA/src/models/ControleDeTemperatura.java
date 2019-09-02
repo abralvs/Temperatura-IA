@@ -22,25 +22,22 @@ public class ControleDeTemperatura {
 		FunctionBlock fb = fis.getFunctionBlock(null);
 
 		// Set inputs
-		fb.setVariable("temperatura",22);
+		fb.setVariable("temperatura",31);
 		fb.setVariable("tamanhosala",50.0);
 
 		// Evaluate
 		fb.evaluate();
                 
 		// Show output variable's chart
-		fb.getVariable("tempeaturideal").defuzzify();
+		fb.getVariable("temperaturaideal").defuzzify();
                 // Print ruleSet
 		System.out.println(fb);
-		System.out.println("tempeaturideal: " + fb.getVariable("tempeaturideal").getValue()+" "
-                        +fb.getVariables());  
+		System.out.println("temperaturaideal: " + fb.getVariable("temperaturaideal").getValue());
                 
-                
-                
-                
+             
                 //JFuzzyChart.get().chart(fb);
                 /*Geração dos graficos*/
-                // Variable tip = fb.getVariable("tempeaturideal");
+                // Variable tip = fb.getVariable("temperaturaideal");
                 //JFuzzyChart.get().chart(tip, tip.getDefuzzifier(), true); 
     }
 }

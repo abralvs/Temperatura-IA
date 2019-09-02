@@ -6,7 +6,7 @@ VAR_INPUT
 END_VAR
 
 VAR_OUTPUT
-        tempeaturideal : REAL;
+        temperaturaideal : REAL;
 END_VAR
 
 FUZZIFY temperatura
@@ -24,7 +24,7 @@ FUZZIFY tamanhosala
         TERM grande  := (55,0) (100,1);
 END_FUZZIFY
 
-DEFUZZIFY tempeaturideal 
+DEFUZZIFY temperaturaideal 
         TERM diminuirmuito     := (-16,0) (-14,1) (-13,0);
         TERM diminuirumpouco   := (-11,0) (-6,1)  (-4,0);
         TERM mantertempertura  := (-2,0)  (0,1)   (1,0); 
@@ -39,12 +39,12 @@ RULEBLOCK Regras
         ACT : MIN;
         ACCU : MAX;
 
-        RULE 1 : IF temperatura IS muitofria      THEN tempeaturideal IS aumentarmuito;  
-        RULE 2 : IF temperatura IS fria           THEN tempeaturideal IS aumentarumpouco;
-        RULE 3 : IF temperatura IS agradavel      THEN tempeaturideal IS mantertempertura;
-        RULE 4 : IF temperatura IS desconfortavel THEN tempeaturideal IS diminuirumpouco;
-        RULE 5 : IF temperatura IS quente         THEN tempeaturideal IS diminuirumpouco; 
-        RULE 6 : IF temperatura IS muitoquente    THEN tempeaturideal IS diminuirmuito;    
+        RULE 1 : IF temperatura IS muitofria      THEN temperaturaideal IS aumentarmuito;  
+        RULE 2 : IF temperatura IS fria           THEN temperaturaideal IS aumentarumpouco;
+        RULE 3 : IF temperatura IS agradavel      THEN temperaturaideal IS mantertempertura;
+        RULE 4 : IF temperatura IS desconfortavel THEN temperaturaideal IS diminuirumpouco;
+        RULE 5 : IF temperatura IS quente         THEN temperaturaideal IS diminuirumpouco; 
+        RULE 6 : IF temperatura IS muitoquente    THEN temperaturaideal IS diminuirmuito;    
 END_RULEBLOCK
     
 END_FUNCTION_BLOCK
