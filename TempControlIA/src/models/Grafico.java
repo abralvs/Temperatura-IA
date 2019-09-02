@@ -17,23 +17,49 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author igorb
  */
 
-public class Grafico {
-         
-
-            
-    public static DefaultCategoryDataset dsExterna;
-    public static DefaultCategoryDataset dsInterna;
-    public static CategoryPlot plotTempExterna;
-    public static CategoryPlot plotTempInterna;
-    public static int idTemp = 1;
+public class Grafico {       
+    private DefaultCategoryDataset dsTemp;
+    private CategoryPlot plotTemp;
+    private int idTemp = 1;
+    private JFreeChart chart;
     
-     public ChartPanel geraGraficoTempExterna(DefaultCategoryDataset ds,String titulo){
+    
+    public Grafico(){
+        dsTemp = new DefaultCategoryDataset();
         
-        JFreeChart chart = ChartFactory.createLineChart(titulo, "", "", ds, PlotOrientation.VERTICAL, true, true, true);
-        plotTempExterna = (CategoryPlot) chart.getPlot();
+    }
+
+    public void setDsTemp(DefaultCategoryDataset dsTemp) {
+        this.dsTemp = dsTemp;
+    }
+
+    public void setPlotTemp(CategoryPlot plotTemp) {
+        this.plotTemp = plotTemp;
+    }
+
+    public void setIdTemp(int idTemp) {
+        this.idTemp = idTemp;
+    }  
+    
+    public  DefaultCategoryDataset getDsTemp() {
+        return dsTemp;
+    }
+
+    public CategoryPlot getPlotTemp() {
+        return plotTemp;
+    }
+
+    public int getIdTemp() {
+        return idTemp;
+    }
+     
+    public ChartPanel generateChart(String title, int x, int y){
+        
+        chart = ChartFactory.createLineChart(title, "", "", dsTemp, PlotOrientation.VERTICAL, true, true, true);
+        plotTemp = (CategoryPlot) chart.getPlot();
         
         // Colocando ponto no grafico
-        LineAndShapeRenderer renderer = (LineAndShapeRenderer) plotTempExterna.getRenderer();
+        LineAndShapeRenderer renderer = (LineAndShapeRenderer) plotTemp.getRenderer();
         renderer.setBaseShapesVisible(true);
         renderer.setSeriesPaint(0, Color.BLUE);
         renderer.setBaseItemLabelsVisible(true);
@@ -44,54 +70,20 @@ public class Grafico {
         renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator("{2}", format));
        
         // Setando altura do grafico
-        NumberAxis rangeAxis = (NumberAxis) plotTempExterna.getRangeAxis();
+        NumberAxis rangeAxis = (NumberAxis) plotTemp.getRangeAxis();
         rangeAxis.setRange(10, 50);
 	rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         
         // setando cores do grafico
-        plotTempExterna.setBackgroundPaint(Color.WHITE);
+        plotTemp.setBackgroundPaint(Color.WHITE);
         //plot.setOutlinePaint(Color.WHITE);
-        plotTempExterna.setRangeGridlinePaint(Color.WHITE);
+        plotTemp.setRangeGridlinePaint(Color.WHITE);
 
      
         // criando o painel com o grafico de doencas
         ChartPanel panel = new ChartPanel(chart);
-        panel.setBounds(280, 20, 350, 190);
+        panel.setBounds(x, y, 350, 190);
         
         return panel;
-    }
-    
-    
-     public ChartPanel geraGraficoTempInterna(DefaultCategoryDataset ds,String titulo){
-        
-        JFreeChart chart = ChartFactory.createLineChart(titulo, "", "", ds, PlotOrientation.VERTICAL, true, true, true);
-        plotTempInterna = (CategoryPlot) chart.getPlot();
-        
-        // Colocando ponto no grafico
-        LineAndShapeRenderer renderer = (LineAndShapeRenderer) plotTempInterna.getRenderer();
-        renderer.setBaseShapesVisible(true);
-        renderer.setSeriesPaint(0, Color.BLUE);
-        renderer.setBaseItemLabelsVisible(true);
-        
-
-        // Colocando numeração da temperatura no ponto do grafico
-        final DecimalFormat format = new DecimalFormat("#0.##");
-        renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator("{2}", format));
-       
-        // Setando altura do grafico
-        NumberAxis rangeAxis = (NumberAxis) plotTempInterna.getRangeAxis();
-        rangeAxis.setRange(10, 50);
-	rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-        
-        // setando cores do grafico
-        plotTempInterna.setBackgroundPaint(Color.WHITE);
-        //plot.setOutlinePaint(Color.WHITE);
-        plotTempInterna.setRangeGridlinePaint(Color.WHITE);
-  
-        // criando o painel com o grafico de doencas
-        ChartPanel panel = new ChartPanel(chart);
-        panel.setBounds(280, 50, 350, 190);
-        
-        return panel;
-    }
+    } 
 }

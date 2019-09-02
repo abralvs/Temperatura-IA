@@ -21,7 +21,10 @@ public final class FrameControl extends javax.swing.JFrame {
     /**
      * Creates new form FrameControl
      */
-    public static Grafico grafico;
+    public static Grafico graficoTempInterna;
+    public static Grafico graficoTempExterna;
+    public DefaultCategoryDataset dsTempInterna;
+    public DefaultCategoryDataset dsTempExterna;
     private static EnvironmentConfiguration envConfig;
         
     public FrameControl(EnvironmentConfiguration envConfig)  {
@@ -32,27 +35,28 @@ public final class FrameControl extends javax.swing.JFrame {
         this.envConfig = envConfig;
         
         /*Objeto que gera os graficos*/
-        grafico = new Grafico();
-        
-        
+        graficoTempInterna = new Grafico();
+        graficoTempExterna = new Grafico();
+         
         /*PLOTANDO PRIMEIRO GRAFICO*/
-        grafico.dsExterna = new DefaultCategoryDataset();
-        pTemExterna.add(grafico.geraGraficoTempExterna(grafico.dsExterna,"temperatura Externa"));
+        pTemExterna.add(graficoTempExterna.generateChart("temperatura Externa",200,20));
         
         /*PLOTANDO SEGUNDO GRAFICO*/
-        grafico.dsInterna = new DefaultCategoryDataset();
-        grafico.dsInterna.addValue(40.5, "temperatura", "t1");
-        grafico.dsInterna.addValue(38.2, "temperatura", "t2");
-        grafico.dsInterna.addValue(37.3, "temperatura", "t3");
-        grafico.dsInterna.addValue(31.5, "temperatura", "t4");
-        pTempInterna.add(grafico.geraGraficoTempInterna(grafico.dsInterna,"Temperatura Interna"));
+        dsTempInterna = new DefaultCategoryDataset();
+        dsTempInterna.addValue(40.5, "temperatura", "t1");
+        dsTempInterna.addValue(38.2, "temperatura", "t2");
+        dsTempInterna.addValue(37.3, "temperatura", "t3");
+        dsTempInterna.addValue(31.5, "temperatura", "t4");
+        
+        graficoTempInterna.setDsTemp(dsTempInterna); 
+        pTempInterna.add(graficoTempInterna.generateChart("Temperatura Interna",200,20));
         
         
         ImageIcon icon = new ImageIcon("src\\tempcontrolia\\images\\termometro.png");
         jLabelTerm.setIcon(icon);
         jLabelTerm1.setIcon(icon);
         
-        setTemperaturaFicticia();
+        setTemperaturaFicticia();  
     } 
     
     public static void setTemperaturaFicticia(){
@@ -67,12 +71,12 @@ public final class FrameControl extends javax.swing.JFrame {
                     Logger.getLogger(FrameControl.class.getName()).log(Level.SEVERE, null, ex);
                   }
               
-                  if (grafico.dsExterna.getColumnCount() >= 4)
-                       grafico.dsExterna.removeColumn(0);
+                  if (graficoTempExterna.getDsTemp().getColumnCount() >= 4)
+                       graficoTempExterna.getDsTemp().removeColumn(0);
                   
-                  grafico.dsExterna.addValue((gerador.nextDouble() * 35)+10,"temperatura","t"+grafico.idTemp);
-                  grafico.plotTempExterna.setDataset(grafico.dsExterna);          
-                  grafico.idTemp++;
+                  graficoTempExterna.getDsTemp().addValue((gerador.nextDouble() * 35)+10,"temperatura","t"+graficoTempExterna.getIdTemp());
+                  graficoTempExterna.getPlotTemp().setDataset(graficoTempExterna.getDsTemp());          
+                  graficoTempExterna.setIdTemp((graficoTempExterna.getIdTemp()+1));
               }
            }
         }.start();
@@ -111,16 +115,16 @@ public final class FrameControl extends javax.swing.JFrame {
         pTemExternaLayout.setHorizontalGroup(
             pTemExternaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pTemExternaLayout.createSequentialGroup()
-                .addGap(181, 181, 181)
+                .addGap(95, 95, 95)
                 .addComponent(jLabelTerm, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pTemExternaLayout.setVerticalGroup(
             pTemExternaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pTemExternaLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(57, 57, 57)
                 .addComponent(jLabelTerm, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -132,13 +136,13 @@ public final class FrameControl extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(280, 280, 280)
+                .addGap(193, 193, 193)
                 .addComponent(jLabelArCond)
-                .addContainerGap(506, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelArCond, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+            .addComponent(jLabelArCond, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pTempInterna.setBackground(new java.awt.Color(255, 255, 255));
@@ -148,16 +152,16 @@ public final class FrameControl extends javax.swing.JFrame {
         pTempInternaLayout.setHorizontalGroup(
             pTempInternaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pTempInternaLayout.createSequentialGroup()
-                .addGap(185, 185, 185)
+                .addGap(94, 94, 94)
                 .addComponent(jLabelTerm1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pTempInternaLayout.setVerticalGroup(
             pTempInternaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pTempInternaLayout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addGap(72, 72, 72)
                 .addComponent(jLabelTerm1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -190,11 +194,11 @@ public final class FrameControl extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
         );
 
         pack();
