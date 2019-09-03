@@ -11,7 +11,7 @@ import net.sourceforge.jFuzzyLogic.rule.Variable;
  *
  * @author igorb
  */
-public class ControleDeTemperatura {
+public class TemperatureController {
     public static void main(String[] args) throws Exception { 
         
         String filename = "src" + File.separatorChar + "logicafuzzy" + File.separatorChar + "logicaFuzzy.fcl";

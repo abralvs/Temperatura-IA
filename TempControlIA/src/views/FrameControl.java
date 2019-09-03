@@ -5,7 +5,7 @@
  */
 package views;
 
-import models.Grafico;
+import models.Graphic;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,8 +21,8 @@ public final class FrameControl extends javax.swing.JFrame {
     /**
      * Creates new form FrameControl
      */
-    public static Grafico graficoTempInterna;
-    public static Grafico graficoTempExterna;
+    public static Graphic graficoTempInterna;
+    public static Graphic graficoTempExterna;
     public DefaultCategoryDataset dsTempInterna;
     public DefaultCategoryDataset dsTempExterna;
     private static EnvironmentConfiguration envConfig;
@@ -35,8 +35,8 @@ public final class FrameControl extends javax.swing.JFrame {
         this.envConfig = envConfig;
         
         /*Objeto que gera os graficos*/
-        graficoTempInterna = new Grafico();
-        graficoTempExterna = new Grafico();
+        graficoTempInterna = new Graphic();
+        graficoTempExterna = new Graphic();
          
         /*PLOTANDO PRIMEIRO GRAFICO*/
         pTemExterna.add(graficoTempExterna.generateChart("temperatura Externa",200,20));

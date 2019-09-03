@@ -17,14 +17,14 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author igorb
  */
 
-public class Grafico {       
+public class Graphic {       
     private DefaultCategoryDataset dsTemp;
     private CategoryPlot plotTemp;
     private int idTemp = 1;
     private JFreeChart chart;
     
     
-    public Grafico(){
+    public Graphic(){
         dsTemp = new DefaultCategoryDataset();
         
     }
