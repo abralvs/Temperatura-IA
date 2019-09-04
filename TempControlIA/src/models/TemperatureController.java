@@ -22,13 +22,46 @@ public class TemperatureController {
             System.exit(1);
         }
 
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Informe a quantidade de pessoas na sala: ");
+        int qtdPessoas = scan.nextInt();
+
+        System.out.println("Informe o comprimento da sala (em metros): ");
+        double cSala = scan.nextDouble();
+
+        System.out.println("Informe a largura da sala (em metros): ")
+        double lSala = scan.nextDouble();
+
+        //--------------------------------------------------------------------------------------------------------------
+        //                                             cálculo classificacao sala                                     //
+
+        //limites inferiores e superiores da classficacao de sala, muitas pessoas, normal e poucas
+        double limInfPoucasPessoas      = 0,
+                limSupPoucasPessoas     = (lSala * cSala)*0.25,
+                limInfNormal            = limSupPoucasPessoas,
+                limSupNormal            = (lSala * cSala) * 0.5,
+                limInfMuitasPessoas     = limSupNormal,
+                limSupMuitasPessoas     = (lSala * cSala);
+
+        int classificacaoSala = -1;  // poucas pessoas =  0, normal = 1, muitas pesssoas = 2;
+
+        if(qtdPessoas >= limInfPoucasPessoas && qtdPessoas < limSupPoucasPessoas)
+            classificacaoSala = 0;
+        else if(qtdPessoas >= limInfPoucasPessoas && qtdPessoas < limSupNormal)
+            classificacaoSala = 1;
+        else if(qtdPessoas >= limSupNormal && qtdPessoas < limSupMuitasPessoas)
+            classificacaoSala = 2;
+
+        //--------------------------------------------------------------------------------------------------------------
+
         // Get default function block
         FunctionBlock fb = fis.getFunctionBlock(null);
 
         // Set inputs
         fb.setVariable("temperatura", 19);
         fb.setVariable("tamanhosala", 50.0);
-
+        fb.setVariable("classficacaosala", classificacaoSala);
         // Evaluate
         fb.evaluate();
 

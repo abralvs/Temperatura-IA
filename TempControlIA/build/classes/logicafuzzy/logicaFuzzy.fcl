@@ -1,8 +1,9 @@
 FUNCTION_BLOCK papeis
 
 VAR_INPUT
-        temperatura : REAL;
-        tamanhosala : REAL;
+        temperatura         : REAL;
+        tamanhosala         : REAL;
+        classificacaosala   : REAL;
 END_VAR
 
 VAR_OUTPUT
@@ -22,6 +23,12 @@ FUZZIFY tamanhosala
         TERM pequena := (10,1) (30,0);
         TERM media   := (25,0) (50,1) (60,0);
         TERM grande  := (55,0) (100,1);
+END_FUZZIFY
+
+FUZZIFY tamanhosala
+        TERM poucaspessoas  := (0,1);
+        TERM normal         := (1,1);
+        TERM muitaspessoas  := (2,1);
 END_FUZZIFY
 
 DEFUZZIFY temperaturaideal 
