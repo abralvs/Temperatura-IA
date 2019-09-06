@@ -1,9 +1,9 @@
 FUNCTION_BLOCK papeis
 
 VAR_INPUT
-        temperatura         : REAL;
-        tamanhosala         : REAL;
-        classificacaosala   : REAL;
+        temperatura    : REAL;
+        tamanhosala    : REAL;
+        ocupacaosala   : REAL;
 END_VAR
 
 VAR_OUTPUT
@@ -25,7 +25,7 @@ FUZZIFY tamanhosala
         TERM grande  := (55,0) (100,1);
 END_FUZZIFY
 
-FUZZIFY tamanhosala
+FUZZIFY ocupacaosala
         TERM poucaspessoas  := (0,1);
         TERM normal         := (1,1);
         TERM muitaspessoas  := (2,1);
@@ -46,12 +46,87 @@ RULEBLOCK Regras
         ACT : MIN;
         ACCU : MAX;
 
-        RULE 1 : IF temperatura IS muitofria      THEN temperaturaideal IS aumentarmuito;  
-        RULE 2 : IF temperatura IS fria           THEN temperaturaideal IS aumentarumpouco;
-        RULE 3 : IF temperatura IS agradavel      THEN temperaturaideal IS mantertempertura;
-        RULE 4 : IF temperatura IS desconfortavel THEN temperaturaideal IS diminuirumpouco;
-        RULE 5 : IF temperatura IS quente         THEN temperaturaideal IS diminuirumpouco; 
-        RULE 6 : IF temperatura IS muitoquente    THEN temperaturaideal IS diminuirmuito;    
+        RULE 1 : IF temperatura IS muitofria AND tamanhosala IS grande AND ocupacaosala IS poucaspessoas THEN temperaturaideal IS aumentarmuito;
+        RULE 2 : IF temperatura IS muitofria AND tamanhosala IS media  AND ocupacaosala IS poucaspessoas THEN temperaturaideal IS aumentarmuito;
+        RULE 3 : IF temperatura IS muitofria AND tamanhosala IS pequena AND ocupacaosala IS poucaspessoas THEN temperaturaideal IS aumentarmuito;
+
+        RULE 4 : IF temperatura IS muitofria AND tamanhosala IS grande AND ocupacaosala IS normal THEN temperaturaideal IS aumentarmuito;
+        RULE 5 : IF temperatura IS muitofria AND tamanhosala IS media  AND ocupacaosala IS normal THEN temperaturaideal IS aumentarmuito;
+        RULE 6 : IF temperatura IS muitofria AND tamanhosala IS pequena AND ocupacaosala IS normal THEN temperaturaideal IS aumentarmuito;
+
+        RULE 7 : IF temperatura IS muitofria AND tamanhosala IS grande AND ocupacaosala IS muitaspessoas THEN temperaturaideal IS aumentarmuito;
+        RULE 8 : IF temperatura IS muitofria AND tamanhosala IS media  AND ocupacaosala IS muitaspessoas THEN temperaturaideal IS aumentarmuito;
+        RULE 9 : IF temperatura IS muitofria AND tamanhosala IS pequena AND ocupacaosala IS muitaspessoas THEN temperaturaideal IS aumentarmuito;
+        
+
+
+        RULE 10 : IF temperatura IS fria  AND tamanhosala IS grande AND ocupacaosala IS poucaspessoas THEN temperaturaideal IS aumentarumpouco;
+        RULE 11 : IF temperatura IS fria  AND tamanhosala IS media  AND ocupacaosala IS poucaspessoas THEN temperaturaideal IS aumentarumpouco;
+        RULE 12 : IF temperatura IS fria  AND tamanhosala IS pequena AND ocupacaosala IS poucaspessoas THEN temperaturaideal IS aumentarumpouco;
+
+        RULE 13 : IF temperatura IS fria  AND tamanhosala IS grande  AND ocupacaosala IS normal THEN temperaturaideal IS aumentarumpouco;
+        RULE 14 : IF temperatura IS fria  AND tamanhosala IS media   AND ocupacaosala IS normal THEN temperaturaideal IS aumentarumpouco;
+        RULE 15 : IF temperatura IS fria  AND tamanhosala IS pequena AND ocupacaosala IS normal THEN temperaturaideal IS aumentarumpouco;    
+
+        RULE 16 : IF temperatura IS fria  AND tamanhosala IS grande  AND ocupacaosala IS muitaspessoas THEN temperaturaideal IS mantertempertura;
+        RULE 17 : IF temperatura IS fria  AND tamanhosala IS media   AND ocupacaosala IS muitaspessoas THEN temperaturaideal IS mantertempertura;
+        RULE 18 : IF temperatura IS fria  AND tamanhosala IS pequena AND ocupacaosala IS muitaspessoas THEN temperaturaideal IS mantertempertura;
+
+
+
+        RULE 19 : IF temperatura IS agradavel  AND tamanhosala IS grande   AND ocupacaosala IS poucaspessoas  THEN temperaturaideal IS mantertempertura;
+        RULE 20 : IF temperatura IS agradavel  AND tamanhosala IS media    AND ocupacaosala IS poucaspessoas  THEN temperaturaideal IS mantertempertura;
+        RULE 21 : IF temperatura IS agradavel  AND tamanhosala IS pequena  AND ocupacaosala IS poucaspessoas  THEN temperaturaideal IS mantertempertura;
+
+        RULE 22 : IF temperatura IS agradavel  AND tamanhosala IS grande   AND ocupacaosala IS normal  THEN temperaturaideal IS mantertempertura;
+        RULE 23 : IF temperatura IS agradavel  AND tamanhosala IS media    AND ocupacaosala IS normal  THEN temperaturaideal IS mantertempertura;
+        RULE 24 : IF temperatura IS agradavel  AND tamanhosala IS pequena  AND ocupacaosala IS normal  THEN temperaturaideal IS mantertempertura;
+
+        RULE 25 : IF temperatura IS agradavel  AND tamanhosala IS grande   AND ocupacaosala IS muitaspessoas  THEN temperaturaideal IS diminuirumpouco;
+        RULE 26 : IF temperatura IS agradavel  AND tamanhosala IS media    AND ocupacaosala IS muitaspessoas  THEN temperaturaideal IS mantertempertura;
+        RULE 27 : IF temperatura IS agradavel  AND tamanhosala IS pequena  AND ocupacaosala IS muitaspessoas  THEN temperaturaideal IS mantertempertura;
+        
+
+
+        RULE 28 : IF temperatura IS desconfortavel AND tamanhosala IS pequena  AND ocupacaosala IS poucaspessoas THEN temperaturaideal IS diminuirumpouco;
+        RULE 29 : IF temperatura IS desconfortavel AND tamanhosala IS media    AND ocupacaosala IS poucaspessoas THEN temperaturaideal IS diminuirumpouco;
+        RULE 30 : IF temperatura IS desconfortavel AND tamanhosala IS grande   AND ocupacaosala IS poucaspessoas THEN temperaturaideal IS diminuirumpouco;
+
+        RULE 31 : IF temperatura IS desconfortavel AND tamanhosala IS pequena  AND ocupacaosala IS normal THEN temperaturaideal IS diminuirumpouco;
+        RULE 32 : IF temperatura IS desconfortavel AND tamanhosala IS media    AND ocupacaosala IS normal THEN temperaturaideal IS diminuirumpouco;
+        RULE 33 : IF temperatura IS desconfortavel AND tamanhosala IS grande   AND ocupacaosala IS normal THEN temperaturaideal IS diminuirumpouco;
+
+        RULE 34 : IF temperatura IS desconfortavel AND tamanhosala IS pequena  AND ocupacaosala IS muitaspessoas THEN temperaturaideal IS diminuirumpouco;
+        RULE 35 : IF temperatura IS desconfortavel AND tamanhosala IS media    AND ocupacaosala IS muitaspessoas THEN temperaturaideal IS diminuirumpouco;
+        RULE 36 : IF temperatura IS desconfortavel AND tamanhosala IS grande   AND ocupacaosala IS muitaspessoas THEN temperaturaideal IS diminuirumpouco;
+
+
+
+        RULE 37 : IF temperatura IS quente   AND tamanhosala IS grande  AND ocupacaosala IS poucaspessoas  THEN temperaturaideal IS diminuirumpouco; 
+        RULE 38 : IF temperatura IS quente   AND tamanhosala IS media   AND ocupacaosala IS poucaspessoas  THEN temperaturaideal IS diminuirumpouco;
+        RULE 39 : IF temperatura IS quente   AND tamanhosala IS pequena AND ocupacaosala IS poucaspessoas  THEN temperaturaideal IS diminuirumpouco;
+
+        RULE 40 : IF temperatura IS quente   AND tamanhosala IS grande  AND ocupacaosala IS normal  THEN temperaturaideal IS diminuirumpouco; 
+        RULE 41 : IF temperatura IS quente   AND tamanhosala IS media   AND ocupacaosala IS normal  THEN temperaturaideal IS diminuirumpouco;
+        RULE 42 : IF temperatura IS quente   AND tamanhosala IS pequena AND ocupacaosala IS normal  THEN temperaturaideal IS diminuirumpouco;
+
+        RULE 43 : IF temperatura IS quente   AND tamanhosala IS grande  AND ocupacaosala IS muitaspessoas  THEN temperaturaideal IS diminuirmuito; 
+        RULE 44 : IF temperatura IS quente   AND tamanhosala IS media   AND ocupacaosala IS muitaspessoas  THEN temperaturaideal IS diminuirmuito;
+        RULE 45 : IF temperatura IS quente   AND tamanhosala IS pequena AND ocupacaosala IS muitaspessoas  THEN temperaturaideal IS diminuirmuito;
+
+
+
+        RULE 46 : IF temperatura IS muitoquente AND tamanhosala IS grande  AND ocupacaosala IS poucaspessoas THEN temperaturaideal IS diminuirumpouco;  
+        RULE 47 : IF temperatura IS muitoquente AND tamanhosala IS media   AND ocupacaosala IS poucaspessoas THEN temperaturaideal IS diminuirumpouco;
+        RULE 48 : IF temperatura IS muitoquente AND tamanhosala IS pequena AND ocupacaosala IS poucaspessoas THEN temperaturaideal IS diminuirumpouco;
+
+        RULE 49 : IF temperatura IS muitoquente AND tamanhosala IS grande  AND ocupacaosala IS normal THEN temperaturaideal IS diminuirmuito;  
+        RULE 50 : IF temperatura IS muitoquente AND tamanhosala IS media   AND ocupacaosala IS normal THEN temperaturaideal IS diminuirmuito;  
+        RULE 51 : IF temperatura IS muitoquente AND tamanhosala IS pequena AND ocupacaosala IS normal THEN temperaturaideal IS diminuirmuito;
+        
+        RULE 52 : IF temperatura IS muitoquente AND tamanhosala IS grande  AND ocupacaosala IS muitaspessoas THEN temperaturaideal IS diminuirmuito;  
+        RULE 53 : IF temperatura IS muitoquente AND tamanhosala IS media   AND ocupacaosala IS muitaspessoas THEN temperaturaideal IS diminuirmuito;  
+        RULE 54 : IF temperatura IS muitoquente AND tamanhosala IS pequena AND ocupacaosala IS muitaspessoas THEN temperaturaideal IS diminuirmuito;
 END_RULEBLOCK
     
 END_FUNCTION_BLOCK

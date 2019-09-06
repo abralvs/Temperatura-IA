@@ -1,9 +1,9 @@
 package models;
 
 import java.io.File;
+import java.util.Scanner;
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.FunctionBlock;
-import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
 import net.sourceforge.jFuzzyLogic.rule.LinguisticTerm;
 import net.sourceforge.jFuzzyLogic.rule.Variable;
 
@@ -30,7 +30,7 @@ public class TemperatureController {
         System.out.println("Informe o comprimento da sala (em metros): ");
         double cSala = scan.nextDouble();
 
-        System.out.println("Informe a largura da sala (em metros): ")
+        System.out.println("Informe a largura da sala (em metros): ");
         double lSala = scan.nextDouble();
 
         //--------------------------------------------------------------------------------------------------------------
@@ -59,9 +59,9 @@ public class TemperatureController {
         FunctionBlock fb = fis.getFunctionBlock(null);
 
         // Set inputs
-        fb.setVariable("temperatura", 19);
-        fb.setVariable("tamanhosala", 50.0);
-        fb.setVariable("classficacaosala", classificacaoSala);
+        fb.setVariable("temperatura", 25);
+        fb.setVariable("tamanhosala", (cSala * lSala));
+        fb.setVariable("ocupacaosala", classificacaoSala);
         // Evaluate
         fb.evaluate();
 
