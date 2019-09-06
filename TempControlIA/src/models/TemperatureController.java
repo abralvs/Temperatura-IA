@@ -59,7 +59,7 @@ public class TemperatureController {
         FunctionBlock fb = fis.getFunctionBlock(null);
 
         // Set inputs
-        fb.setVariable("temperatura", 25);
+        fb.setVariable("temperaturainterna", 25);
         fb.setVariable("tamanhosala", (cSala * lSala));
         fb.setVariable("ocupacaosala", classificacaoSala);
         // Evaluate
