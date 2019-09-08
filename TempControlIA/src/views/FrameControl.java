@@ -191,6 +191,11 @@ public final class FrameControl extends javax.swing.JFrame {
         );
 
         jMenuChart.setText("Charts");
+        jMenuChart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuChartActionPerformed(evt);
+            }
+        });
 
         jRadioButtonChartFuzzify.setSelected(true);
         jRadioButtonChartFuzzify.setText("Fuzzify");
@@ -237,8 +242,13 @@ public final class FrameControl extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonChartFuzzifyActionPerformed
 
     private void jRadioButtonDefuzzifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDefuzzifyActionPerformed
-        
+           FrameDefuzzifyChart frameDefuzzify = new FrameDefuzzifyChart(tempControl);
+           frameDefuzzify.setVisible(true);
     }//GEN-LAST:event_jRadioButtonDefuzzifyActionPerformed
+
+    private void jMenuChartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuChartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuChartActionPerformed
 
     /**
      * @param args the command line arguments

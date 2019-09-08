@@ -36,19 +36,18 @@ public class Chart {
     private CategoryPlot plotTemp;
     private int idTemp = 1;
     private JFreeChart chart;    
-    
-    
+        
     public Chart(){  dsTemp = new DefaultCategoryDataset(); }
       
+      
+    public ChartPanel getChartInternTemp(Variable var){return pyramidChartCreate(var,5,5,410,210); }
+    public ChartPanel getChartExternTemp(Variable var){return pyramidChartCreate(var,5,5,410,210);}
+    public ChartPanel getChartRoomDimensions(Variable var){return pyramidChartCreate(var,5,5,410,210);}
+    public ChartPanel getChartRoomOcupation(Variable var){return pyramidChartCreate(var,5,5,410,210);}
+    public ChartPanel getChartDefuzzify(Variable var){return pyramidChartCreate(var,20,10,500,250);}
     
     
-    public ChartPanel getChartInternTemp(Variable var){return pyramidChartCreate(var); }
-    public ChartPanel getChartExternTemp(Variable var){return pyramidChartCreate(var);}
-    public ChartPanel getChartRoomDimensions(Variable var){return pyramidChartCreate(var);}
-    public ChartPanel getChartRoomOcupation(Variable var){return pyramidChartCreate(var);}
-    
-    
-    private ChartPanel pyramidChartCreate(Variable var) {
+    private ChartPanel pyramidChartCreate(Variable var, int x, int y, int w, int l) {
 		boolean discrete = true;
 		boolean plotDefuzz = false;
 
@@ -140,7 +139,7 @@ public class Chart {
 		// if (showIt) DialogGraph.execute(chart);
                 
                 ChartPanel panel = new ChartPanel(chart);
-                panel.setBounds(5,5,410,210); 
+                panel.setBounds(x,y,w,l); 
                  
                 return panel;
     } 

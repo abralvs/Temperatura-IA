@@ -21,10 +21,9 @@ public class FrameFuzzifyChart extends javax.swing.JFrame {
     
     public FrameFuzzifyChart(TemperatureController tempControl) {
         initComponents();
+        setResizable(false);
         
         this.tempControl = tempControl;
-         
-        
         plotCharts();
     }
     
