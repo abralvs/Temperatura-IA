@@ -5,12 +5,13 @@
  */
 package views;
 
-import models.Graphic;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import models.Chart;
 import models.EnvironmentConfiguration;
+import models.TemperatureController;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
@@ -21,35 +22,37 @@ public final class FrameControl extends javax.swing.JFrame {
     /**
      * Creates new form FrameControl
      */
-    public static Graphic graficoTempInterna;
-    public static Graphic graficoTempExterna;
+    public  static Chart graficoTempInterna;
+    public  static Chart graficoTempExterna;
+    public static TemperatureController tempControl;
     public DefaultCategoryDataset dsTempInterna;
     public DefaultCategoryDataset dsTempExterna;
-    private static EnvironmentConfiguration envConfig;
         
-    public FrameControl(EnvironmentConfiguration envConfig)  {
+    public FrameControl(TemperatureController  tempControl)  {
         initComponents();
         setResizable(false); 
         
         /*Configuracoes do ambiente*/
-        this.envConfig = envConfig;
+        this.tempControl = tempControl;
+        
+        /* exectando fuzzificação e defuzzificação*/
+        this.tempControl.loadFile();
         
         /*Objeto que gera os graficos*/
-        graficoTempInterna = new Graphic();
-        graficoTempExterna = new Graphic();
+        graficoTempInterna = new Chart();
+        graficoTempExterna = new Chart();
          
         /*PLOTANDO PRIMEIRO GRAFICO*/
-        pTemExterna.add(graficoTempExterna.generateChart("temperatura Externa",200,20));
+        pTemExterna.add(graficoTempExterna.lineChartCreate("temperatura Externa",200,20));
         
         /*PLOTANDO SEGUNDO GRAFICO*/
         dsTempInterna = new DefaultCategoryDataset();
         dsTempInterna.addValue(40.5, "temperatura", "t1");
         dsTempInterna.addValue(38.2, "temperatura", "t2");
         dsTempInterna.addValue(37.3, "temperatura", "t3");
-        dsTempInterna.addValue(31.5, "temperatura", "t4");
-        
+        dsTempInterna.addValue(31.5, "temperatura", "t4"); 
         graficoTempInterna.setDsTemp(dsTempInterna); 
-        pTempInterna.add(graficoTempInterna.generateChart("Temperatura Interna",200,20));
+        pTempInterna.add(graficoTempInterna.lineChartCreate("Temperatura Interna",200,20));
         
         
         ImageIcon icon = new ImageIcon("src\\tempcontrolia\\images\\termometro.png");
@@ -59,6 +62,9 @@ public final class FrameControl extends javax.swing.JFrame {
         setTemperaturaFicticia();  
     } 
     
+    
+    
+    /*Thread que gera valores aleatorios de temperatura externa*/
     public static void setTemperaturaFicticia(){
          Random gerador = new Random();
          new Thread(){
@@ -100,7 +106,9 @@ public final class FrameControl extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jMenuChart = new javax.swing.JMenu();
+        jRadioButtonChartFuzzify = new javax.swing.JRadioButtonMenuItem();
+        jRadioButtonDefuzzify = new javax.swing.JRadioButtonMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -182,8 +190,27 @@ public final class FrameControl extends javax.swing.JFrame {
                 .addComponent(pTempInterna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jMenuChart.setText("Charts");
+
+        jRadioButtonChartFuzzify.setSelected(true);
+        jRadioButtonChartFuzzify.setText("Fuzzify");
+        jRadioButtonChartFuzzify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonChartFuzzifyActionPerformed(evt);
+            }
+        });
+        jMenuChart.add(jRadioButtonChartFuzzify);
+
+        jRadioButtonDefuzzify.setSelected(true);
+        jRadioButtonDefuzzify.setText("Defuzzify");
+        jRadioButtonDefuzzify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonDefuzzifyActionPerformed(evt);
+            }
+        });
+        jMenuChart.add(jRadioButtonDefuzzify);
+
+        jMenuBar1.add(jMenuChart);
 
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
@@ -203,6 +230,15 @@ public final class FrameControl extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jRadioButtonChartFuzzifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonChartFuzzifyActionPerformed
+        FrameFuzzifyChart frameFuzzifyChart = new FrameFuzzifyChart(tempControl);
+        frameFuzzifyChart.setVisible(true);
+    }//GEN-LAST:event_jRadioButtonChartFuzzifyActionPerformed
+
+    private void jRadioButtonDefuzzifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDefuzzifyActionPerformed
+        
+    }//GEN-LAST:event_jRadioButtonDefuzzifyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,7 +270,7 @@ public final class FrameControl extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                    new FrameControl(envConfig).setVisible(true);
+                    new FrameControl(tempControl).setVisible(true);
             }
         });
     }
@@ -243,11 +279,13 @@ public final class FrameControl extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelTerm;
     private javax.swing.JLabel jLabelTerm1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuChart;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonChartFuzzify;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonDefuzzify;
     private javax.swing.JPanel pTemExterna;
     private javax.swing.JPanel pTempInterna;
     // End of variables declaration//GEN-END:variables

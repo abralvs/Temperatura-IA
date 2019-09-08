@@ -6,6 +6,7 @@
 package views;
 
 import models.EnvironmentConfiguration;
+import models.TemperatureController;
 
 /**
  *
@@ -177,20 +178,18 @@ public class FrameConfiguration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSimulateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimulateActionPerformed
-        EnvironmentConfiguration envConfig = new EnvironmentConfiguration();
         
-        envConfig.setLength(Float.parseFloat(jTextRoomWidth.getText()));
-        envConfig.setWidth(Float.parseFloat(jTextRoomLength.getText()));
-        envConfig.setExternTemp(Float.parseFloat(jTexTempExternal.getText()));
-        envConfig.setInternTemp(Float.parseFloat(jTextTempRoom.getText()));
-        envConfig.setNumberPeople(Integer.parseInt(jTextNumberPeople.getText()));
         
-        FrameControl fm = new FrameControl(envConfig);
+        
+        EnvironmentConfiguration envConfig = new EnvironmentConfiguration(Float.parseFloat(jTextRoomWidth.getText()),
+                Float.parseFloat(jTextRoomLength.getText()),Float.parseFloat(jTexTempExternal.getText()),
+                Float.parseFloat(jTextTempRoom.getText()),Integer.parseInt(jTextNumberPeople.getText()));
+        
+        TemperatureController tempControl = new TemperatureController(envConfig); 
+        FrameControl fm = new FrameControl(tempControl);
         fm.setVisible(true);
         
-        FrameFuzzifyChart frameFuzzifyChart = new FrameFuzzifyChart();
-        frameFuzzifyChart.setVisible(true);
-        
+        setVisible(false);
     }//GEN-LAST:event_btnSimulateActionPerformed
 
     private void jTextTempRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTempRoomActionPerformed

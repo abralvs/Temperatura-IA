@@ -1,7 +1,6 @@
 package models;
 
 import java.io.File;
-import java.util.Scanner;
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.FunctionBlock;
 import net.sourceforge.jFuzzyLogic.rule.LinguisticTerm;
@@ -12,60 +11,46 @@ import net.sourceforge.jFuzzyLogic.rule.Variable;
  * @author igorb
  */
 public class TemperatureController {
-    public static void main(String[] args) throws Exception { 
-        
+    private EnvironmentConfiguration envConf;
+    private FIS fis;
+    private FunctionBlock fb;
+    private Chart chart;
+    
+    public TemperatureController(EnvironmentConfiguration envConf) {
+        this.fis = new FIS();
+        this.envConf = envConf;
+        this.chart = new Chart();
+    }
+    
+    public void loadFile(){
         String filename = "src" + File.separatorChar + "logicafuzzy" + File.separatorChar + "logicaFuzzy.fcl";
-        FIS fis = FIS.load(filename, true);
+        fis = FIS.load(filename, true);
 
         if (fis == null) {
             System.err.println("Can't load file: '" + filename + "'");
             System.exit(1);
         }
-
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Informe a quantidade de pessoas na sala: ");
-        int qtdPessoas = scan.nextInt();
-
-        System.out.println("Informe o comprimento da sala (em metros): ");
-        double cSala = scan.nextDouble();
-
-        System.out.println("Informe a largura da sala (em metros): ");
-        double lSala = scan.nextDouble();
-
-        //--------------------------------------------------------------------------------------------------------------
-        //                                             cálculo classificacao sala                                     //
-
-        //limites inferiores e superiores da classficacao de sala, muitas pessoas, normal e poucas
-        double limInfPoucasPessoas      = 0,
-                limSupPoucasPessoas     = (lSala * cSala)*0.25,
-                limInfNormal            = limSupPoucasPessoas,
-                limSupNormal            = (lSala * cSala) * 0.5,
-                limInfMuitasPessoas     = limSupNormal,
-                limSupMuitasPessoas     = (lSala * cSala);
-
-        int classificacaoSala = -1;  // poucas pessoas =  0, normal = 1, muitas pesssoas = 2;
-
-        if(qtdPessoas >= limInfPoucasPessoas && qtdPessoas < limSupPoucasPessoas)
-            classificacaoSala = 0;
-        else if(qtdPessoas >= limInfPoucasPessoas && qtdPessoas < limSupNormal)
-            classificacaoSala = 1;
-        else if(qtdPessoas >= limSupNormal && qtdPessoas < limSupMuitasPessoas)
-            classificacaoSala = 2;
-
-        //--------------------------------------------------------------------------------------------------------------
-
-        // Get default function block
-        FunctionBlock fb = fis.getFunctionBlock(null);
+        
+        if(envConf.getClassificacaoQtdPessoas() >= envConf.getLimInfPoucasPessoas() && envConf.getClassificacaoQtdPessoas() < envConf.getLimSupPoucasPessoas())
+            envConf.setClassificacaoSala(0);
+        else if(envConf.getClassificacaoQtdPessoas() >= envConf.getLimInfPoucasPessoas() && envConf.getClassificacaoQtdPessoas() < envConf.getLimSupNormal())
+            envConf.setClassificacaoSala(1);
+        else if(envConf.getClassificacaoQtdPessoas() >= envConf.getLimSupNormal() && envConf.getClassificacaoQtdPessoas() < envConf.getLimSupMuitasPessoas())
+            envConf.setClassificacaoSala(2);
+        
+        fb = fis.getFunctionBlock(null);
 
         // Set inputs
-        fb.setVariable("temperaturainterna", 25);
-        fb.setVariable("tamanhosala", (cSala * lSala));
-        fb.setVariable("ocupacaosala", classificacaoSala);
+        fb.setVariable("temperaturainterna", envConf.getInternTemp());
+        fb.setVariable("tamanhosala", (envConf.getLength() * envConf.getWidth()));
+        fb.setVariable("ocupacaosala", envConf.getClassificacaoSala());
         // Evaluate
         fb.evaluate();
 
         // Show output variable's chart
+        fb.getVariable("temperaturaideal").defuzzify();
+        
+         // Show output variable's chart
         fb.getVariable("temperaturaideal").defuzzify();
                 
         float tempSetting;
@@ -99,7 +84,40 @@ public class TemperatureController {
                          +"\nGrau de Pertinencia: "+idealTemp.getRelevance()
                          +"\nAjustar temperatura em: "+idealTemp.getTemperatureSetting()); 
                 
-        //JFuzzyChart.get().chart(fb);
-        //JFuzzyChart.get().chart(classificacao, tip.getDefuzzifier(), true); 
+        //JFuzzyChart.get().chart(fb.getVariable("temperaturainterna"),true);
+        //JFuzzyChart.get().chart(fb.getVariable("temperaturainterna"),true);
+    }
+   
+    
+        public void setFis(FIS fis) {
+        this.fis = fis;
+    }
+
+    public void setEnvConf(EnvironmentConfiguration envConf) {
+        this.envConf = envConf;
+    }
+    
+    public void setFb(FunctionBlock fb) {
+        this.fb = fb;
+    }
+
+    public void setChart(Chart chart) {
+        this.chart = chart;
+    }
+
+    public FIS getFis() {
+        return fis;
+    }
+
+    public EnvironmentConfiguration getEnvConf() {
+        return envConf;
+    }
+
+    public FunctionBlock getFb() {
+        return fb;
+    }
+
+    public Chart getChart() {
+        return chart;
     }
 }

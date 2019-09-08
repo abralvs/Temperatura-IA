@@ -5,6 +5,9 @@
  */
 package views;
 
+import models.Chart;
+import models.TemperatureController;
+
 /**
  *
  * @author igorb
@@ -14,8 +17,24 @@ public class FrameFuzzifyChart extends javax.swing.JFrame {
     /**
      * Creates new form FrameFuzzifyChart
      */
-    public FrameFuzzifyChart() {
+    public static TemperatureController tempControl;
+    
+    public FrameFuzzifyChart(TemperatureController tempControl) {
         initComponents();
+        
+        this.tempControl = tempControl;
+         
+        
+        plotCharts();
+    }
+    
+    /*Plotando os graficos na tela*/
+    public void plotCharts(){
+        Chart chart = new Chart();
+        jPanelTempInterna.add(chart.getChartInternTemp(tempControl.getFb().getVariable("temperaturainterna")));
+        jPanelTempExterna.add(chart.getChartExternTemp(tempControl.getFb().getVariable("temperaturaexterna")));
+        jPanelTamanhoSala.add(chart.getChartRoomDimensions(tempControl.getFb().getVariable("tamanhosala")));
+        jPanelOcuapacaoSala.add(chart.getChartRoomOcupation(tempControl.getFb().getVariable("ocupacaosala")));
     }
 
     /**
@@ -28,20 +47,90 @@ public class FrameFuzzifyChart extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanelTempInterna = new javax.swing.JPanel();
+        jPanelTempExterna = new javax.swing.JPanel();
+        jPanelTamanhoSala = new javax.swing.JPanel();
+        jPanelOcuapacaoSala = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelTempInterna.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanelTempInternaLayout = new javax.swing.GroupLayout(jPanelTempInterna);
+        jPanelTempInterna.setLayout(jPanelTempInternaLayout);
+        jPanelTempInternaLayout.setHorizontalGroup(
+            jPanelTempInternaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanelTempInternaLayout.setVerticalGroup(
+            jPanelTempInternaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanelTempExterna.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanelTempExternaLayout = new javax.swing.GroupLayout(jPanelTempExterna);
+        jPanelTempExterna.setLayout(jPanelTempExternaLayout);
+        jPanelTempExternaLayout.setHorizontalGroup(
+            jPanelTempExternaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 411, Short.MAX_VALUE)
+        );
+        jPanelTempExternaLayout.setVerticalGroup(
+            jPanelTempExternaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 240, Short.MAX_VALUE)
+        );
+
+        jPanelTamanhoSala.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanelTamanhoSalaLayout = new javax.swing.GroupLayout(jPanelTamanhoSala);
+        jPanelTamanhoSala.setLayout(jPanelTamanhoSalaLayout);
+        jPanelTamanhoSalaLayout.setHorizontalGroup(
+            jPanelTamanhoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 425, Short.MAX_VALUE)
+        );
+        jPanelTamanhoSalaLayout.setVerticalGroup(
+            jPanelTamanhoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 239, Short.MAX_VALUE)
+        );
+
+        jPanelOcuapacaoSala.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanelOcuapacaoSalaLayout = new javax.swing.GroupLayout(jPanelOcuapacaoSala);
+        jPanelOcuapacaoSala.setLayout(jPanelOcuapacaoSalaLayout);
+        jPanelOcuapacaoSalaLayout.setHorizontalGroup(
+            jPanelOcuapacaoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanelOcuapacaoSalaLayout.setVerticalGroup(
+            jPanelOcuapacaoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 762, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanelTamanhoSala, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelTempInterna, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelTempExterna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelOcuapacaoSala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanelTempExterna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelTempInterna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelOcuapacaoSala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanelTamanhoSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -52,7 +141,9 @@ public class FrameFuzzifyChart extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -88,12 +179,16 @@ public class FrameFuzzifyChart extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameFuzzifyChart().setVisible(true);
+                new FrameFuzzifyChart(tempControl).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelOcuapacaoSala;
+    private javax.swing.JPanel jPanelTamanhoSala;
+    private javax.swing.JPanel jPanelTempExterna;
+    private javax.swing.JPanel jPanelTempInterna;
     // End of variables declaration//GEN-END:variables
 }
