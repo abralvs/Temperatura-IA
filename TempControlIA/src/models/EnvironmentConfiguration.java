@@ -10,10 +10,8 @@ package models;
  * @author igorb
  */
 public class EnvironmentConfiguration {
-    private float width;
-    private float length;
-    private float externTemp;
-    private float internTemp;
+    private double roomDimension;
+    private double internTemp;
     private double limInfPoucasPessoas;
     private double limSupPoucasPessoas; 
     private double limInfNormal;
@@ -25,11 +23,9 @@ public class EnvironmentConfiguration {
     private int classificacaoQtdPessoas;  // poucas pessoas =  0, normal = 1, muitas pesssoas = 2;
     
 
-    public EnvironmentConfiguration(float width, float length, float externTemp, 
-            float internTemp, int numberPeople) {
-        this.width = width;
-        this.length = length;
-        this.externTemp = externTemp;
+    public EnvironmentConfiguration(double roomDimension,double internTemp,
+            int numberPeople) {
+        this.roomDimension = roomDimension;
         this.internTemp = internTemp;
         this.numberPeople = numberPeople;
         configureLimits(); 
@@ -38,11 +34,11 @@ public class EnvironmentConfiguration {
     
     public void configureLimits(){
         limInfPoucasPessoas     = 0;
-        limSupPoucasPessoas     = (length * width)*0.25;
+        limSupPoucasPessoas     = (roomDimension)*0.25;
         limInfNormal            = limSupPoucasPessoas;
-        limSupNormal            = (length * width) * 0.5;
+        limSupNormal            = (roomDimension) * 0.5;
         limInfMuitasPessoas     = limSupNormal;
-        limSupMuitasPessoas     = (length * width);
+        limSupMuitasPessoas     = (roomDimension);
         classificacaoSala = -1; 
     } 
 
@@ -80,19 +76,13 @@ public class EnvironmentConfiguration {
     
     
     
-    public void setWidth(float width) {
-        this.width = width;
+    public void setRoomDimension(double width) {
+        this.roomDimension = width;
     }
 
-    public void setLength(float length) {
-        this.length = length;
-    }
+    
 
-    public void setExternTemp(float externTemp) {
-        this.externTemp = externTemp;
-    }
-
-    public void setInternTemp(float internTemp) {
+    public void setInternTemp(double internTemp) {
         this.internTemp = internTemp;
     }
 
@@ -100,26 +90,18 @@ public class EnvironmentConfiguration {
         this.numberPeople = numberPeople;
     }   
 
-    public float getWidth() {
-        return width;
+    public double getRoomDimension() {
+        return roomDimension;
     }
 
-    public float getLength() {
-        return length;
-    }
-
-    public float getExternTemp() {
-        return externTemp;
-    }
-
-    public float getInternTemp() {
+    
+    public double getInternTemp() {
         return internTemp;
     }
 
-    public float getNumberPeople() {
+    public double getNumberPeople() {
         return numberPeople;
     }
-    
     
     public double getLimInfPoucasPessoas() {
         return limInfPoucasPessoas;

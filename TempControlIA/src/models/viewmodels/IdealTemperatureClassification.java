@@ -1,17 +1,17 @@
-package models;
+package models.viewmodels;
 
 /**
  *
  * @author igorb
  */
-public class IdealTemperature {
+public class IdealTemperatureClassification {
     private String linguisticTerm;
     private float relevance;
     private float temperatureSetting;
 
-    public IdealTemperature() {}
+    public IdealTemperatureClassification() {}
     
-    public IdealTemperature(String linguisticTerm, float relevance, float temperatureSetting) {
+    public IdealTemperatureClassification(String linguisticTerm, float relevance, float temperatureSetting) {
         this.linguisticTerm = linguisticTerm;
         this.relevance = relevance;
         this.temperatureSetting = temperatureSetting;

@@ -31,9 +31,10 @@ public class FrameFuzzifyChart extends javax.swing.JFrame {
     public void plotCharts(){
         Chart chart = new Chart();
         jPanelTempInterna.add(chart.getChartInternTemp(tempControl.getFb().getVariable("temperaturainterna")));
-        jPanelTempExterna.add(chart.getChartExternTemp(tempControl.getFb().getVariable("temperaturaexterna")));
         jPanelTamanhoSala.add(chart.getChartRoomDimensions(tempControl.getFb().getVariable("tamanhosala")));
-        jPanelOcuapacaoSala.add(chart.getChartRoomOcupation(tempControl.getFb().getVariable("ocupacaosala")));
+        jPanelOcupacaoSala.add(chart.getChartRoomOcupation(tempControl.getFb().getVariable("ocupacaosala")));
+        jPanelDefuzzy.add(chart.getChartDefuzzify(tempControl.getFb().getVariable("ajusteideal")));
+
     }
 
     /**
@@ -47,9 +48,9 @@ public class FrameFuzzifyChart extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanelTempInterna = new javax.swing.JPanel();
-        jPanelTempExterna = new javax.swing.JPanel();
+        jPanelOcupacaoSala = new javax.swing.JPanel();
         jPanelTamanhoSala = new javax.swing.JPanel();
-        jPanelOcuapacaoSala = new javax.swing.JPanel();
+        jPanelDefuzzy = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,16 +67,16 @@ public class FrameFuzzifyChart extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanelTempExterna.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelOcupacaoSala.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanelTempExternaLayout = new javax.swing.GroupLayout(jPanelTempExterna);
-        jPanelTempExterna.setLayout(jPanelTempExternaLayout);
-        jPanelTempExternaLayout.setHorizontalGroup(
-            jPanelTempExternaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 411, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanelOcupacaoSalaLayout = new javax.swing.GroupLayout(jPanelOcupacaoSala);
+        jPanelOcupacaoSala.setLayout(jPanelOcupacaoSalaLayout);
+        jPanelOcupacaoSalaLayout.setHorizontalGroup(
+            jPanelOcupacaoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 424, Short.MAX_VALUE)
         );
-        jPanelTempExternaLayout.setVerticalGroup(
-            jPanelTempExternaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelOcupacaoSalaLayout.setVerticalGroup(
+            jPanelOcupacaoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 240, Short.MAX_VALUE)
         );
 
@@ -89,19 +90,19 @@ public class FrameFuzzifyChart extends javax.swing.JFrame {
         );
         jPanelTamanhoSalaLayout.setVerticalGroup(
             jPanelTamanhoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 239, Short.MAX_VALUE)
+            .addGap(0, 244, Short.MAX_VALUE)
         );
 
-        jPanelOcuapacaoSala.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelDefuzzy.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanelOcuapacaoSalaLayout = new javax.swing.GroupLayout(jPanelOcuapacaoSala);
-        jPanelOcuapacaoSala.setLayout(jPanelOcuapacaoSalaLayout);
-        jPanelOcuapacaoSalaLayout.setHorizontalGroup(
-            jPanelOcuapacaoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelDefuzzyLayout = new javax.swing.GroupLayout(jPanelDefuzzy);
+        jPanelDefuzzy.setLayout(jPanelDefuzzyLayout);
+        jPanelDefuzzyLayout.setHorizontalGroup(
+            jPanelDefuzzyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanelOcuapacaoSalaLayout.setVerticalGroup(
-            jPanelOcuapacaoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelDefuzzyLayout.setVerticalGroup(
+            jPanelDefuzzyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -115,21 +116,19 @@ public class FrameFuzzifyChart extends javax.swing.JFrame {
                     .addComponent(jPanelTempInterna, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelTempExterna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelOcuapacaoSala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanelOcupacaoSala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelDefuzzy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanelTempExterna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelOcupacaoSala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelTempInterna, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelOcuapacaoSala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanelTamanhoSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jPanelTamanhoSala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelDefuzzy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -140,9 +139,7 @@ public class FrameFuzzifyChart extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -185,9 +182,9 @@ public class FrameFuzzifyChart extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelOcuapacaoSala;
+    private javax.swing.JPanel jPanelDefuzzy;
+    private javax.swing.JPanel jPanelOcupacaoSala;
     private javax.swing.JPanel jPanelTamanhoSala;
-    private javax.swing.JPanel jPanelTempExterna;
     private javax.swing.JPanel jPanelTempInterna;
     // End of variables declaration//GEN-END:variables
 }

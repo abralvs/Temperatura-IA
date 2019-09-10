@@ -44,10 +44,10 @@ public class Chart {
     public ChartPanel getChartExternTemp(Variable var){return pyramidChartCreate(var,5,5,410,210);}
     public ChartPanel getChartRoomDimensions(Variable var){return pyramidChartCreate(var,5,5,410,210);}
     public ChartPanel getChartRoomOcupation(Variable var){return pyramidChartCreate(var,5,5,410,210);}
-    public ChartPanel getChartDefuzzify(Variable var){return pyramidChartCreate(var,20,10,500,250);}
+    public ChartPanel getChartDefuzzify(Variable var){return pyramidChartCreate(var,20,10,410,210);}
     
     
-    private ChartPanel pyramidChartCreate(Variable var, int x, int y, int w, int l) {
+    public ChartPanel pyramidChartCreate(Variable var, int x, int y, int w, int l) {
 		boolean discrete = true;
 		boolean plotDefuzz = false;
 
