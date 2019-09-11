@@ -48,7 +48,7 @@ public class TemperatureController {
         // Set inputs
         fb.setVariable("temperaturainterna", envConf.getInternTemp());
         fb.setVariable("tamanhosala", (envConf.getRoomDimension()));
-        fb.setVariable("ocupacaosala", envConf.getClassificacaoSala());
+        fb.setVariable("ocupacaosala", envConf.getClassificacaoQtdPessoas());
         // Evaluate
         fb.evaluate();
 
