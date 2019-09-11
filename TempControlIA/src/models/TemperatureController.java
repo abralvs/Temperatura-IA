@@ -38,9 +38,9 @@ public class TemperatureController {
         
         if(envConf.getNumberPeople() >= envConf.getLimInfPoucasPessoas() && envConf.getNumberPeople() < envConf.getLimSupPoucasPessoas())
             envConf.setClassificacaoQtdPessoas(0);
-        else if(envConf.getNumberPeople() >= envConf.getLimInfPoucasPessoas() && envConf.getNumberPeople() < envConf.getLimSupNormal())
+        else if(envConf.getNumberPeople() >= envConf.getLimInfNormal() && envConf.getNumberPeople() < envConf.getLimSupNormal())
             envConf.setClassificacaoQtdPessoas(1);
-        else if(envConf.getNumberPeople() >= envConf.getLimSupNormal() && envConf.getNumberPeople() < envConf.getLimSupMuitasPessoas())
+        else if(envConf.getNumberPeople() >= envConf.getLimInfMuitasPessoas() && envConf.getNumberPeople() < envConf.getLimSupMuitasPessoas())
             envConf.setClassificacaoQtdPessoas(2);
         
         fb = fis.getFunctionBlock(null);

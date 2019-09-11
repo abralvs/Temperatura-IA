@@ -26,9 +26,9 @@ FUZZIFY tamanhosala
 END_FUZZIFY
 
 FUZZIFY ocupacaosala
-        TERM poucaspessoas  := (0,1);
-        TERM normal         := (1,1);
-        TERM muitaspessoas  := (2,1);
+        TERM poucaspessoas  := (0,1) (1,0);
+        TERM normal         := (0,0) (1,1) (2,0);
+        TERM muitaspessoas  := (1,0) (2,1);
 END_FUZZIFY
 
 DEFUZZIFY ajusteideal 
