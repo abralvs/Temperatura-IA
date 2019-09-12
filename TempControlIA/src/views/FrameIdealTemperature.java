@@ -88,9 +88,9 @@ public class FrameIdealTemperature extends javax.swing.JFrame {
        GrauNivelOcupacao.setText("Relevance: "+ String.format(" %.2f",ocupationRoom.getRelevance()));
        
        if (idealTemp.getTemperatureSetting() > 0 )
-        tempAjuste.setText("Ajustar Temperatura Em: +"+String.format("%.2f",idealTemp.getTemperatureSetting())+"ºC");
+        tempAjuste.setText("Set Temperature in: +"+String.format("%.2f",idealTemp.getTemperatureSetting())+"ºC");
        else
-        tempAjuste.setText("Ajustar Temperatura Em: "+String.format("%.2f",idealTemp.getTemperatureSetting())+"ºC");
+        tempAjuste.setText("Set Temperature in: "+String.format("%.2f",idealTemp.getTemperatureSetting())+"ºC");
     }
     
     @SuppressWarnings("unchecked")
@@ -126,16 +126,16 @@ public class FrameIdealTemperature extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(580, 500));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Grau de Pertinencia dos Valores Informados");
+        jLabel1.setText("Degree of Relevance of reported values");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Temperatura Interna");
+        jLabel2.setText("Internal temperature");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Tamanho da Sala");
+        jLabel3.setText(" Room Size");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setText("Nivel de Ocupacao");
+        jLabel4.setText("Occupancy Level");
 
         valorTempIntera.setText("Valor: ");
 
@@ -167,7 +167,7 @@ public class FrameIdealTemperature extends javax.swing.JFrame {
         );
 
         tempAjuste.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        tempAjuste.setText("Ajustar Temperatura Em: ");
+        tempAjuste.setText("Set temperature in: ");
 
         valorTamanhoSala.setText("Valor:");
 
@@ -214,7 +214,7 @@ public class FrameIdealTemperature extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tempAjuste)
-                .addGap(171, 171, 171))
+                .addGap(191, 191, 191))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -54,9 +54,9 @@ RULEBLOCK Regras
         RULE 5 : IF temperaturainterna IS muitofria AND tamanhosala IS media  AND ocupacaosala IS normal THEN ajusteideal IS aumentarmuito;
         RULE 6 : IF temperaturainterna IS muitofria AND tamanhosala IS pequena AND ocupacaosala IS normal THEN ajusteideal IS aumentarmuito;
 
-        RULE 7 : IF temperaturainterna IS muitofria AND tamanhosala IS grande AND ocupacaosala IS muitaspessoas THEN ajusteideal IS aumentarmuito;
-        RULE 8 : IF temperaturainterna IS muitofria AND tamanhosala IS media  AND ocupacaosala IS muitaspessoas THEN ajusteideal IS aumentarmuito;
-        RULE 9 : IF temperaturainterna IS muitofria AND tamanhosala IS pequena AND ocupacaosala IS muitaspessoas THEN ajusteideal IS aumentarmuito;
+        RULE 7 : IF temperaturainterna IS muitofria AND tamanhosala IS grande AND ocupacaosala IS muitaspessoas THEN ajusteideal IS aumentarumpouco;
+        RULE 8 : IF temperaturainterna IS muitofria AND tamanhosala IS media  AND ocupacaosala IS muitaspessoas THEN ajusteideal IS aumentarumpouco;
+        RULE 9 : IF temperaturainterna IS muitofria AND tamanhosala IS pequena AND ocupacaosala IS muitaspessoas THEN ajusteideal IS aumentarumpouco;
         
 
 
@@ -83,8 +83,8 @@ RULEBLOCK Regras
         RULE 24 : IF temperaturainterna IS agradavel  AND tamanhosala IS pequena  AND ocupacaosala IS normal  THEN ajusteideal IS mantertempertura;
 
         RULE 25 : IF temperaturainterna IS agradavel  AND tamanhosala IS grande   AND ocupacaosala IS muitaspessoas  THEN ajusteideal IS diminuirumpouco;
-        RULE 26 : IF temperaturainterna IS agradavel  AND tamanhosala IS media    AND ocupacaosala IS muitaspessoas  THEN ajusteideal IS mantertempertura;
-        RULE 27 : IF temperaturainterna IS agradavel  AND tamanhosala IS pequena  AND ocupacaosala IS muitaspessoas  THEN ajusteideal IS mantertempertura;
+        RULE 26 : IF temperaturainterna IS agradavel  AND tamanhosala IS media    AND ocupacaosala IS muitaspessoas  THEN ajusteideal IS diminuirumpouco;
+        RULE 27 : IF temperaturainterna IS agradavel  AND tamanhosala IS pequena  AND ocupacaosala IS muitaspessoas  THEN ajusteideal IS diminuirumpouco;
         
 
 
@@ -96,9 +96,9 @@ RULEBLOCK Regras
         RULE 32 : IF temperaturainterna IS desconfortavel AND tamanhosala IS media    AND ocupacaosala IS normal THEN ajusteideal IS diminuirumpouco;
         RULE 33 : IF temperaturainterna IS desconfortavel AND tamanhosala IS grande   AND ocupacaosala IS normal THEN ajusteideal IS diminuirumpouco;
 
-        RULE 34 : IF temperaturainterna IS desconfortavel AND tamanhosala IS pequena  AND ocupacaosala IS muitaspessoas THEN ajusteideal IS diminuirumpouco;
-        RULE 35 : IF temperaturainterna IS desconfortavel AND tamanhosala IS media    AND ocupacaosala IS muitaspessoas THEN ajusteideal IS diminuirumpouco;
-        RULE 36 : IF temperaturainterna IS desconfortavel AND tamanhosala IS grande   AND ocupacaosala IS muitaspessoas THEN ajusteideal IS diminuirumpouco;
+        RULE 34 : IF temperaturainterna IS desconfortavel AND tamanhosala IS pequena  AND ocupacaosala IS muitaspessoas THEN ajusteideal IS diminuirmuito;
+        RULE 35 : IF temperaturainterna IS desconfortavel AND tamanhosala IS media    AND ocupacaosala IS muitaspessoas THEN ajusteideal IS diminuirmuito;
+        RULE 36 : IF temperaturainterna IS desconfortavel AND tamanhosala IS grande   AND ocupacaosala IS muitaspessoas THEN ajusteideal IS diminuirmuito;
 
 
 
@@ -116,9 +116,9 @@ RULEBLOCK Regras
 
 
 
-        RULE 46 : IF temperaturainterna IS muitoquente AND tamanhosala IS grande  AND ocupacaosala IS poucaspessoas THEN ajusteideal IS diminuirumpouco;  
-        RULE 47 : IF temperaturainterna IS muitoquente AND tamanhosala IS media   AND ocupacaosala IS poucaspessoas THEN ajusteideal IS diminuirumpouco;
-        RULE 48 : IF temperaturainterna IS muitoquente AND tamanhosala IS pequena AND ocupacaosala IS poucaspessoas THEN ajusteideal IS diminuirumpouco;
+        RULE 46 : IF temperaturainterna IS muitoquente AND tamanhosala IS grande  AND ocupacaosala IS poucaspessoas THEN ajusteideal IS diminuirmuito;  
+        RULE 47 : IF temperaturainterna IS muitoquente AND tamanhosala IS media   AND ocupacaosala IS poucaspessoas THEN ajusteideal IS diminuirmuito;
+        RULE 48 : IF temperaturainterna IS muitoquente AND tamanhosala IS pequena AND ocupacaosala IS poucaspessoas THEN ajusteideal IS diminuirmuito;
 
         RULE 49 : IF temperaturainterna IS muitoquente AND tamanhosala IS grande  AND ocupacaosala IS normal THEN ajusteideal IS diminuirmuito;  
         RULE 50 : IF temperaturainterna IS muitoquente AND tamanhosala IS media   AND ocupacaosala IS normal THEN ajusteideal IS diminuirmuito;  
